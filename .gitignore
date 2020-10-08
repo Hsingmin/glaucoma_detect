@@ -1,0 +1,12 @@
+# Python
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+
+# Directory
+__pycache__
+result/
+pre_model/

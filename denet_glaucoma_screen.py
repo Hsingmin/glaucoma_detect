@@ -16,10 +16,9 @@ import os
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
-import Model_Disc_Seg as DiscSegModel
-import Model_resNet50 as ScreenModel
-import Model_UNet_Side as DiscModel
-
+import model_disc_segment as DiscSegModel
+import model_resnet_50 as ScreenModel
+import model_unet_side as DiscModel
 Img_Seg_size = 640
 Img_Scr_size = 400
 ROI_Scr_size = 224
@@ -93,9 +92,13 @@ for lineIdx in range(0, len(file_test_list)):
     run_time = time() - start_time
 
     print('Run time: ' + str(run_time) + '   Img number: ' + str(lineIdx + 1))
+    print('Image predication: ', Img_pred)
+    print('Disc predication: ', Disc_pred)
+    print('Polar predication: ', Polar_pred)
+    print('Segment predication: ', Seg_pred)
 
-    tmp_name = data_save_path+temp_txt[0]
-    sio.savemat(tmp_name[:-4]+'.mat', {'Img_pred': Img_pred, 
-    	'Disc_pred': Disc_pred, 'Polar_pred': Polar_pred, 'Seg_pred': Seg_pred, 'DENet_pred': DENet_pred})
+    tmp_name = data_save_path + temp_txt[0]
+    # sio.savemat(tmp_name[:-4]+'.mat', {'Img_pred': Img_pred, 
+    #	'Disc_pred': Disc_pred, 'Polar_pred': Polar_pred, 'Seg_pred': Seg_pred, 'DENet_pred': DENet_pred})
     # imsave(tmp_name[:-4]+'.png', Disc_flat)
 
